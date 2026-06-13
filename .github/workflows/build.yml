@@ -3,6 +3,7 @@ name: Build Elyria Stories PSP
 on:
   push:
     branches: [ main ]
+  workflow_dispatch:
 
 jobs:
   build:
@@ -10,23 +11,27 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
-    - name: Install PSP SDK
+    - name: Install PSP toolchain
       run: |
-        sudo apt-get update
-        sudo apt-get install -y cmake build-essential
-        wget https://github.com/pspdev/pspdev/releases/download/latest/pspdev-ubuntu-latest.tar.gz
+        sudo apt-get update -y
+        sudo apt-get install -y cmake build-essential wget libgmp-dev libmpfr-dev libmpc-dev
+        wget -q https://github.com/pspdev/pspdev/releases/download/latest/pspdev-ubuntu-latest.tar.gz
         sudo tar -xzf pspdev-ubuntu-latest.tar.gz -C /usr/local/
+        echo "PSPDEV=/usr/local/pspdev" >> $GITHUB_ENV
         echo "/usr/local/pspdev/bin" >> $GITHUB_PATH
 
-    - name: Build Game
+    - name: Build ELYRIA STORIES
       run: |
         export PSPDEV=/usr/local/pspdev
+        export PATH=$PATH:$PSPDEV/bin
         mkdir -p build && cd build
         cmake .. -DCMAKE_TOOLCHAIN_FILE=$PSPDEV/psp/share/pspdev.cmake
-        make
+        make -j2
 
-    - name: Upload ISO
+    - name: Upload PBP
       uses: actions/upload-artifact@v3
       with:
-        name: elyria-stories-psp
-        path: build/ELYRIA_STORIES.PBP
+        name: ELYRIA-STORIES-PSP
+        path: |
+          build/ELYRIA_STORIES.PBP
+          build/EBOOT.PBP
