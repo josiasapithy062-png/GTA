@@ -1,6 +1,5 @@
 CMakeFiles/ELYRIA_STORIES.dir/src/engine/renderer.c.obj: \
- /src/src/engine/renderer.c /src/src/engine/renderer.h \
- /usr/local/pspdev/psp/sdk/include/pspgu.h \
+ /src/src/engine/renderer.c /usr/local/pspdev/psp/sdk/include/pspgu.h \
  /usr/local/pspdev/psp/sdk/include/psptypes.h \
  /usr/local/pspdev/lib/gcc/psp/15.2.0/include/stdint.h \
  /usr/local/pspdev/psp/include/stdint.h \
@@ -11,6 +10,7 @@ CMakeFiles/ELYRIA_STORIES.dir/src/engine/renderer.c.obj: \
  /usr/local/pspdev/psp/include/sys/_stdint.h \
  /usr/local/pspdev/psp/sdk/include/pspge.h \
  /usr/local/pspdev/psp/sdk/include/pspgum.h \
+ /usr/local/pspdev/psp/sdk/include/pspdisplay.h \
  /usr/local/pspdev/psp/include/math.h \
  /usr/local/pspdev/psp/include/sys/reent.h \
  /usr/local/pspdev/psp/include/_ansi.h \
@@ -22,6 +22,4 @@ CMakeFiles/ELYRIA_STORIES.dir/src/engine/renderer.c.obj: \
  /usr/local/pspdev/psp/include/sys/_types.h \
  /usr/local/pspdev/psp/include/machine/_types.h \
  /usr/local/pspdev/psp/include/sys/lock.h \
- /usr/local/pspdev/psp/include/_ansi.h /src/src/engine/graphics.h \
- /usr/local/pspdev/psp/sdk/include/pspdisplay.h /src/src/engine/models.h \
- /src/src/engine/textures.h
+ /usr/local/pspdev/psp/include/_ansi.h
