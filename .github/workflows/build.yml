@@ -1,0 +1,32 @@
+name: Build Elyria Stories PSP
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Install PSP SDK
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y cmake build-essential
+        wget https://github.com/pspdev/pspdev/releases/download/latest/pspdev-ubuntu-latest.tar.gz
+        sudo tar -xzf pspdev-ubuntu-latest.tar.gz -C /usr/local/
+        echo "/usr/local/pspdev/bin" >> $GITHUB_PATH
+
+    - name: Build Game
+      run: |
+        export PSPDEV=/usr/local/pspdev
+        mkdir -p build && cd build
+        cmake .. -DCMAKE_TOOLCHAIN_FILE=$PSPDEV/psp/share/pspdev.cmake
+        make
+
+    - name: Upload ISO
+      uses: actions/upload-artifact@v3
+      with:
+        name: elyria-stories-psp
+        path: build/ELYRIA_STORIES.PBP
