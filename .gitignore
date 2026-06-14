@@ -1,7 +1,6 @@
 # PSP Build files
 *.o
 *.elf
-*.prx
-*.pbp
 pspdev.tar.gz
 PSP/
+!EBOOT.PBP
